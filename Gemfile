@@ -28,6 +28,7 @@ gem 'spring',        group: :development
 gem 'authlogic'
 gem 'bcrypt', '~> 3.1.7'
 gem 'scrypt'
+gem 'pg'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

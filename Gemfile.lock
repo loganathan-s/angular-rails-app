@@ -63,6 +63,7 @@ GEM
     mime-types-data (3.2016.0521)
     minitest (5.9.0)
     multi_json (1.12.1)
+    pg (0.18.3)
     rack (1.5.5)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -127,6 +128,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 2.0)
   jquery-rails
+  pg
   rails (= 4.1.15)
   sass-rails (~> 4.0.3)
   scrypt

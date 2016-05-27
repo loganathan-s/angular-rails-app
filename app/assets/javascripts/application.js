@@ -10,8 +10,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require jquery
+//= require bootstrap
 //= require angular/angular.min
 //= require angular/angular-ui-router.min
 //= require angular/angular-resource.min
-//= require bootstrap.min
+//= require angular/angular-messages.min
+//= require angular/angular-password
+//= require angular/ngprogress.min
+//= require angular/loading-bar
+//= require_tree ./ng
 //= require_tree .
+
+

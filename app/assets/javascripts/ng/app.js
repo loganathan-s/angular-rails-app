@@ -1,2 +1,3 @@
 'use strict';
-angular.module('Blog', ['ngResource']);
+angular.module('Blog', ['ngMessages', 'ngPassword', 'ngProgress','angular-loading-bar','ngResource']);
+

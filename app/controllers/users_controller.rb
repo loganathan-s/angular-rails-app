@@ -7,8 +7,9 @@ class UsersController < ApplicationController
     @user = User.new(users_params)
     if @user.save
       flash[:success] = "Account registered!"
-      redirect_to root_path
+      render json: {data: "Account registered!"}
     else
+      render json: @user.errors
       render :new
     end
   end

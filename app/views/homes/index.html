@@ -8,35 +8,50 @@
         <form novalidate name="loginForm" role="form" ng-submit="loginUser()" novalidate>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="text" name="email" id="email" class="form-control"/>
+                <input type="text" name="email" class="form-control"/>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" class="form-control"/>
+                <input type="password" name="password" class="form-control"/>
             </div>
             <div>
                 <button type="submit" class="btn btn-primary">Login</button>
             </div>
         </form>
     </div>
+
     <div class="span4 offset1" ng-controller="RegistrationController">
         <h5>Register</h5>
-        <form novalidate role="form" name="registrationForm" ng-submit="registerUser(user)" novalidate>
-            <div class="form-group" ng-class="{ 'has-error' : (registrationForm.email.$touched && (registrationForm.email.$invalid || registrationForm.email.$error.required))}">
-                <label for="email">Email</label>
-                <input type="text" name="email" ng-model="user.email" class="form-control" required/>
-                <span ng-show="registrationForm.email.$error" class="glyphicon glyphicon-remove"></span>
-                <span ng-show="(registrationForm.email.$touched && (registrationForm.email.$invalid || registrationForm.email.$error.required))" class="alert alert-danger help-block">Enter a valid email address.</span>
+        <form role="form" name="registrationForm" ng-submit="registerUser()" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : registrationForm.user.email.$error && !registrationForm.user.firstname.$touched }">
+                <label for="newEmail" class="control-label">Email</label>
+                <input type="email" id="newEmail" name="email" ng-model="email" class="form-control" required/>
+                <div ng-messages="registrationForm.email.$error" role="alert"  ng-if="registrationForm.$submitted || registrationForm.email.$dirty" >
+                    <div ng-message="required" class="help-block">Please enter a email.</div>
+                    <div ng-message="email" class="help-block">Please enter valid email.</div>
+                </div>
             </div>
-            <div class="form-group" ng-class="{ 'has-error' : (registrationForm.password.$touched && (registrationForm.password.$invalid || registrationForm.password.$error.required))}">
-                <label for="password">Password</label>
-                <input type="password" name="password" ng-model="user.password"  class="form-control" required/>
-                <span ng-show="registrationForm.password.$touched && registrationForm.password.$error.required" class="alert alert-danger help-block">Your password is required.</span>
+
+            <div class="form-group">
+                <label  class="control-label">Password</label>
+                <input type="password" name="password" id= "newPassword" ng-model="user.password" class="form-control"
+                       required
+                       ng-maxlength="8"
+                       ng-minlength="6"/>
+
+                <div ng-messages="registrationForm.password.$error" ng-if="registrationForm.$submitted || registrationForm.password.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+                    <div ng-message="required" class="message help-inline">Please Enter Password</div>
+                    <div ng-message="maxlength" class="message help-inline">Password length cant be more than 8 characters</div>
+                    <div ng-message="minlength" class="message help-inline">Password length cant be less than 6 characters</div>
+                </div>
             </div>
-            <div class="form-group" ng-class="{ 'has-error' : (registrationForm.password_confirmation.$touched && (registrationForm.password_confirmation.$invalid || registrationForm.password_confirmation.$error.required))}">
-                <label for="password">Password Confirmation</label>
-                <input type="password" name="password_confirmation" ng-model="user.password_confirmation"  class="form-control" required/>
-                <span ng-show="registrationForm.password_confirmation.$touched && registrationForm.password_confirmation.$error.required" class="help-block alert alert-danger">Your confirm password  is required.</span>
+            <div class="form-group">
+                <label class="control-label">Password Confirmation</label>
+                <input type="password" name="password_confirmation" ng-model="user.password_confirmation"  class="form-control"  match-password="password" />
+                <div ng-messages="registrationForm.password_confirmation.$error" ng-if="registrationForm.$submitted || registrationForm.password_confirmation.$dirty" class="error-messages slide-right">
+                    <div ng-message="required" class="message help-inline slide-left">Please Enter Confirm Password</div>
+                    <div ng-message="passwordMatch" class="message slide-left">Your passwords did not match</div>
+                </div>
             </div>
             <div>
                <button type="submit" class="btn btn-primary" ng-disabled="registrationForm.$invalid">Register</button>
